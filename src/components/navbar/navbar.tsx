@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import Logo from '@/app/favicon.ico';
 import { Button, buttonVariants } from '../buttons/Button';
+import ActiveLink from '../activelink/ActiveLink';
 import { ImHome3 } from "react-icons/im";
 import { IoGrid,  IoChatbubblesSharp, IoCreate, IoSearch, IoClose  } from "react-icons/io5";
 import { FaHouseChimney, FaBell  } from "react-icons/fa6";
@@ -67,25 +68,25 @@ const navbar = () => {
 
   <nav aria-label="Navigação Primária" className="flex flex-row w-full h-auto justify-between text-center bg-PictonBlue text-xl">
     <ul className="flex list-none gap-10 lg:gap-16 px-8 lg:px-12 items-center lg:py-3 md:whitespace-nowrap">
-      <li className="p-2 hover:-translate-y-2 transition-transform hover:text-PrussianBlue">
+      <li className="p-2 hover:-translate-y-2 transition-all hover:text-PrussianBlue">
         <Link href="#" className="flex items-center gap-4" aria-label="Ir para a Meus Anúncios">
           <IoGrid className='text-2xl lg:text-4xl'/>
           <h2>Meus Anúncios</h2>
         </Link>
       </li>
-      <li className="p-2 hover:-translate-y-2 transition-transform hover:text-PrussianBlue ">
+      <li className="p-2 hover:-translate-y-2 transition-all hover:text-PrussianBlue ">
         <Link href="#" className="flex items-center gap-4" aria-label="Ir para a página Chat">
           <IoChatbubblesSharp className='text-2xl lg:text-4xl'/>
           <h2>Chat</h2>
         </Link>
       </li>
-      <li className="p-2 hover:-translate-y-2 transition-transform hover:text-PrussianBlue">
+      <li className="p-2 hover:-translate-y-2 transition-all hover:text-PrussianBlue">
         <Link href="#" className="flex items-center gap-4" aria-label="Ir para a página Notificação">
           <FaBell className='text-2xl lg:text-4xl'/>
           <h2>Notificação</h2>
         </Link>
       </li>
-      <li className="p-2 hover:-translate-y-2 transition-transform hover:text-PrussianBlue ">
+      <li className="p-2 hover:-translate-y-2 transition-all hover:text-PrussianBlue ">
         <Link href="#" className="flex items-center gap-4" aria-label="Ir para a página Anúncio">
           <IoCreate className='text-2xl lg:text-4xl'/>
           <h2>Anúnciar</h2>
@@ -115,51 +116,35 @@ const navbar = () => {
     </div>
     </nav>
 
-    <nav className="navigation fixed bottom-0 flex flex-row mx-auto w-full h-auto py-3 bg-PictonBlue rounded-t-3xl">
-  <ul className="flex flex-row items-center px-10 justify-between text-lg w-full h-auto relative">
-    <li className="group list myannounces-link">
-      <Link href="" className="flex flex-col items-center">
-        <ImHome3 />
-        <span className="flex absolute whitespace-nowrap text-base tracking-tighter opacity-0 translate-y-4 transition-opacity duration-1000">
-          Meus Anúncios
-        </span>
-      </Link>
-    </li>
-    <li className="group list chat-link">
-      <Link href="" className="flex flex-col items-center">
-        <ImHome3 />
-        <span className="flex absolute whitespace-nowrap text-base tracking-tighter opacity-0 translate-y-4 transition-opacity duration-1000">
-          Chat
-        </span>
-      </Link>
-    </li>
-    <li className="group list">
-      <Link href="" className="flex flex-col items-center">
-        <FaHouseChimney />
-        <span className="flex absolute whitespace-nowrap text-base tracking-tighter opacity-0 translate-y-4 transition-opacity duration-1000">
-          Inicio
-        </span>
-      </Link>
-    </li>
-    <li className="group list notification-link">
-      <Link href="" className="flex flex-col items-center">
-        <ImHome3 />
-        <span className="flex absolute whitespace-nowrap text-base tracking-tighter opacity-0 translate-y-4 transition-opacity duration-1000">
-          Notificações
-        </span>
-      </Link>
-    </li>
-    <li className="group list about-link">
-      <Link href="" className="flex flex-col items-center">
-        <ImHome3 />
-        <span className="flex absolute whitespace-nowrap text-base tracking-tighter opacity-0 duration-500 translate-y-4 transition-opacity">
-          Anunciar
-        </span>
-      </Link>
-    </li>
-
-  </ul>
-</nav>
+    <nav className="navigation fixed bottom-0 flex flex-row mx-auto w-full h-auto  bg-PictonBlue rounded-t-3xl">
+      <ul className="flex flex-row items-center px-6 justify-evenly text-lg w-full h-12 relative gap-6">
+        <li className="">
+          <ActiveLink href="/myannounces" icon={<IoGrid/>}>
+            Meus Anúncios
+          </ActiveLink>
+        </li>
+        <li className="">
+          <ActiveLink href="#" icon={<IoChatbubblesSharp/>}>
+            Chat
+          </ActiveLink>
+        </li>
+        <li className="">
+          <ActiveLink href="/" icon={<ImHome3/>}>
+            Início
+          </ActiveLink>
+        </li>
+        <li className="">
+          <ActiveLink href="#" icon={<FaBell/>}>
+            Notificações
+          </ActiveLink>
+        </li>
+        <li className="">
+          <ActiveLink href="#" icon={<IoCreate/>}>
+            Anúnciar
+          </ActiveLink>
+        </li>
+      </ul>
+    </nav>
     </header>
     </>
   )
@@ -186,4 +171,14 @@ export default navbar
       </Link>
     </div>
   </div>
-</div>*/}
+</div>
+
+
+      <Link href="" className="flex flex-col items-center">
+        <FaHouseChimney />
+        <span className="flex absolute whitespace-nowrap text-base tracking-tighter opacity-0 translate-y-4 transition-opacity duration-1000">
+          Inicio
+        </span>
+      </Link>
+
+*/}
