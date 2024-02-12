@@ -31,3 +31,39 @@ body {
     text-wrap: balance;
   }
 }
+
+
+
+  .Indicator {
+    top: -170%;
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    left: 20px;
+}
+
+.Indicator::before {
+  content: "";
+  position: absolute;
+  top: 80%;
+  left: -14px;
+  background-color: #ffffff;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  box-shadow: 1px -10px 0 0 #ffffff;
+  border-top-right-radius: 20px;
+}
+.Indicator::after {
+  content: "";
+  position: absolute;
+  top: 80%;
+  right: -14px;
+  background-color: #ffffff;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  box-shadow: -1px -10px 0 0 #ffffff;
+  border-top-left-radius: 20px;
+}

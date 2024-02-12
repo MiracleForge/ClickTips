@@ -118,7 +118,7 @@ const navbar = () => {
 
     <nav className="navigation fixed bottom-0 flex flex-row mx-auto w-full h-auto  bg-PictonBlue rounded-t-3xl">
       <ul className="flex flex-row items-center px-6 justify-evenly text-lg w-full h-12 relative gap-6">
-        <li className="">
+        <li className="items-start justify-center">
           <ActiveLink href="/myannounces" icon={<IoGrid/>}>
             Meus Anúncios
           </ActiveLink>
@@ -173,12 +173,5 @@ export default navbar
   </div>
 </div>
 
-
-      <Link href="" className="flex flex-col items-center">
-        <FaHouseChimney />
-        <span className="flex absolute whitespace-nowrap text-base tracking-tighter opacity-0 translate-y-4 transition-opacity duration-1000">
-          Inicio
-        </span>
-      </Link>
 
 */}
