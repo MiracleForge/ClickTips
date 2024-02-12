@@ -10,13 +10,16 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Destrave Memórias com um Click | Venda, alugue e Anúncie",
+  title: {
+    template: '%s | Click Tips',
+    default: "Destrave Memórias com um Click | Venda, alugue e Anúncie",
+  },
   description: "Anúncie já com oa Click Tips, venda , aluguel ou anuncie seus serviçõs e construa suas novas memórias",
   keywords: ['Venda', 'Aluguel', 'Anúncios', 'Classificados', 'Imóveis', 'Automóveis', 'Sonnen Software'],
   openGraph: {
     title: 'Destrave Memórias com um Click | Venda, alugue e Anúncie',
     description: 'Anúncie já com oa Click Tips, venda , aluguel ou anuncie seus serviçõs e construa suas novas memórias',
-    url: '#',
+    url: 'www.clicktips.com.br',
     siteName: 'Click Tips',
     images: [
       {
