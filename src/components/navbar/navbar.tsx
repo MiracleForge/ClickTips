@@ -58,7 +58,7 @@ const navbar = () => {
 
         {/* Navigation Links */}
         <div className="flex md:gap-3 lg:gap-6 w-1/3 justify-center items-center md:text-lg lg:text-2xl ">
-          <Link href={'#'} className={buttonVariants()} aria-label='Ir para o Login'>
+          <Link href={'/login'} className={buttonVariants()} aria-label='Ir para o Login'>
             Login
           </Link>
 
@@ -73,7 +73,7 @@ const navbar = () => {
   <nav aria-label="Navigação Primária" className="flex flex-row w-full h-auto justify-between text-center bg-Cerulean text-xl">
     <ul className="flex list-none gap-10 lg:gap-16 px-8 lg:px-12 items-center lg:py-3 md:whitespace-nowrap">
       <li className="p-2 hover:-translate-y-2 transition-all hover:text-PrussianBlue">
-        <Link href="#" className="flex items-center gap-4" aria-label="Ir para a Meus Anúncios">
+        <Link href="/myannounces" className="flex items-center gap-4" aria-label="Ir para a Meus Anúncios">
           <IoGrid className='text-2xl lg:text-4xl'/>
           <h2>Meus Anúncios</h2>
         </Link>
