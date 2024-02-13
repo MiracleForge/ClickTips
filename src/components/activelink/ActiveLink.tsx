@@ -1,14 +1,14 @@
-import React, { ReactNode, ReactElement } from 'react';
-import Link from 'next/link';
+import React, { ReactNode, ReactElement, AnchorHTMLAttributes } from 'react';
+import Link, { LinkProps } from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 type ActiveLinkProps = {
   href: string;
   children: ReactNode;
   icon: ReactElement;
-};
+} & LinkProps & AnchorHTMLAttributes<HTMLAnchorElement>;
 
-const ActiveLink = ({ href, children, icon }: ActiveLinkProps) => {
+const ActiveLink = ({ href, children, icon, ...props }: ActiveLinkProps) => {
     const [isFooter, setIsFooter] = useState(true);
     const pathname = usePathname();
     const isActive = pathname === href;
@@ -27,7 +27,7 @@ const ActiveLink = ({ href, children, icon }: ActiveLinkProps) => {
     }, []);
   
     return (
-      <Link href={href} className={`flex flex-col items-center ${isActive ? '' : ''}`}>
+      <Link href={href} className='flex flex-col items-center ' {...props}>
         <span className={`absolute whitespace-nowrap text-base tracking-tighter opacity duration-1000 text-white font-semibold ${isActive ? 'translate-y-8 opacity-100' : 'translate-y-0 opacity-0'}`}>
           {children}
         </span>
