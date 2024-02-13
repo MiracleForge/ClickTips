@@ -1,7 +1,7 @@
 import React, { ReactNode, ReactElement } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
+import { useState, useEffect } from 'react';
 type ActiveLinkProps = {
   href: string;
   children: ReactNode;
@@ -9,23 +9,37 @@ type ActiveLinkProps = {
 };
 
 const ActiveLink = ({ href, children, icon }: ActiveLinkProps) => {
-  const pathname = usePathname();
-  const isActive = pathname === href;
-
-  return (
-    <Link href={href} className={`flex flex-col items-center ${isActive ? '' : ''}`}>
-      <span className={`absolute whitespace-nowrap  text-lg tracking-tighter opacity duration-1000 text-rickblack  ${isActive ? 'translate-y-8 opacity-100' : 'translate-y-0 opacity-0'}`}>
-        {children}
-      </span>
-      <span className={` duration-[1000ms] text-center block text-3xl rounded-full ${isActive ? '-translate-y-9 opacity-100 text-Cerulean bg-PrussianBlue p-3 border-8 border-white' : 'translate-y-0 text-white'}`}>
-        {icon}
-      </span>
-      <span className='Indicador bg-red-500'>
-
-      </span>
-    </Link>
-  );
-};
-
-export default ActiveLink;
+    const [isFooter, setIsFooter] = useState(true);
+    const pathname = usePathname();
+    const isActive = pathname === href;
+  
+    useEffect(() => {
+      const handleScroll = () => {
+        const scrolled = window.scrollY;
+        setIsFooter(scrolled < 20);
+      };
+  
+      window.addEventListener("scroll", handleScroll);
+  
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }, []);
+  
+    return (
+      <Link href={href} className={`flex flex-col items-center ${isActive ? '' : ''}`}>
+        <span className={`absolute whitespace-nowrap text-base tracking-tighter opacity duration-1000 text-white font-semibold ${isActive ? 'translate-y-8 opacity-100' : 'translate-y-0 opacity-0'}`}>
+          {children}
+        </span>
+        <span className={`duration-[1000ms] block rounded-full p-2 ${isActive ? '-translate-y-9 opacity-100 ' + (isFooter ? 'bg-white' : 'bg-PrussianBlue') : 'translate-y-0 text-white'}`}>
+          <span className={`duration-[1000ms] text-center block text-3xl rounded-full ${isActive ? ' opacity-100 text-Cerulean bg-PrussianBlue ' + (isFooter ? 'bg-PrussianBlue p-3' : 'bg-white p-3') : 'translate-y-0 text-white'}`}>
+            {icon}
+          </span>
+        </span>
+      </Link>
+    );
+  };
+  
+  export default ActiveLink;
+  
 

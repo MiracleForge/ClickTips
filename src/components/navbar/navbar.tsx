@@ -2,7 +2,7 @@
 import React from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import {  useState } from "react";
 import Logo from '@/app/favicon.ico';
 import { Button, buttonVariants } from '../buttons/Button';
 import ActiveLink from '../activelink/ActiveLink';
@@ -66,7 +66,7 @@ const navbar = () => {
     </div>
   </nav>
 
-  <nav aria-label="Navigação Primária" className="flex flex-row w-full h-auto justify-between text-center bg-PictonBlue text-xl">
+  <nav aria-label="Navigação Primária" className="flex flex-row w-full h-auto justify-between text-center bg-Cerulean text-xl">
     <ul className="flex list-none gap-10 lg:gap-16 px-8 lg:px-12 items-center lg:py-3 md:whitespace-nowrap">
       <li className="p-2 hover:-translate-y-2 transition-all hover:text-PrussianBlue">
         <Link href="#" className="flex items-center gap-4" aria-label="Ir para a Meus Anúncios">
@@ -98,7 +98,7 @@ const navbar = () => {
 
 
 <header className=" md:hidden" id="mobile-header" aria-labelledby="mobile-header-label">
-    <nav  aria-label="Navigação Secundária" className='bg-rickblack'>
+    <nav  aria-label="Navigação Secundária" className='bg-gradient-to-br from-Cerulean to-rickblack'>
         <div className='mx-8 py-6'>
             <form action="" className="flex items-center justify-evenly w-full border-2 rounded-xl bg-white mx-auto   p-2">
                 <label htmlFor="search-input" className="sr-only">Search:</label>
@@ -116,7 +116,7 @@ const navbar = () => {
     </div>
     </nav>
 
-    <nav className="navigation fixed bottom-0 flex flex-row mx-auto w-full h-auto  bg-PictonBlue rounded-t-3xl">
+    <nav className="navigation fixed bottom-0 flex flex-row mx-auto w-full h-auto  bg-Cerulean rounded-t-3xl">
       <ul className="flex flex-row items-center px-6 justify-evenly text-lg w-full h-12 relative gap-6">
         <li className="items-start justify-center">
           <ActiveLink href="/myannounces" icon={<IoGrid/>}>
