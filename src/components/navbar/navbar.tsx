@@ -3,6 +3,7 @@ import React from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
 import {  useState } from "react";
+import { usePathname } from 'next/navigation';
 
 import Logo from '@/app/favicon.ico';
 import UserIco from '../../../public/assets/images/lixo1.jpg';
@@ -15,14 +16,17 @@ import { IoGrid,  IoChatbubblesSharp, IoCreate, IoSearch, IoClose  } from "react
 import { FaHouseChimney, FaBell  } from "react-icons/fa6";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { HiMapPin } from "react-icons/hi2";
-import { GiHamburgerMenu } from "react-icons/gi";
-const navbar = () => {
 
+const navbar = () => {
+    const pathname = usePathname();
+    const isLoginPage = pathname === '/login';
     const [isToggled, setIsToggled] = useState(false);
 
     const toggleButton = () => {
         setIsToggled(!isToggled);
     };
+
+
     
   return (
     <>
@@ -102,7 +106,7 @@ const navbar = () => {
 
 
 <header className=" md:hidden fixed w-full h-auto" id="mobile-header" aria-labelledby="mobile-header-label">
-    <nav  aria-label="Navigação Secundária" className='bg-gradient-to-br from-Cerulean to-rickblack'>
+    <nav  aria-label="Navigação Secundária" className={`${isLoginPage ? 'hidden' : 'bg-gradient-to-br from-Cerulean to-rickblack'}`}>
 
       <div className='w-full h-auto flex flex-row pt-6 px-8 items-center'>
         <figure className='rounded-full w-12 h-auto'>

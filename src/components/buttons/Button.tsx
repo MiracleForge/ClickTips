@@ -9,7 +9,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'text-white bg-PrussianBlue hover:bg-Cerulean',
+        default: 'text-white bg-PrussianBlue hover:bg-PictonBlue',
         outline: 'bg-transparent border border-slate-200 hover:bg-slate-100',
         search: 'rounded-none hover:bg-slate-100 text-rickblack bg-white active:shadow-inner active:shadow-black w-auto h-12 lg:h-16 flex items-center justify-center gap-2 border-2 hover:border-4 border-gray-200 hover:border-PrussianBlue px-4',
         secondary: 'flex flex-row  justify-center items-center outline-1 rounded-full gap-x-2'
