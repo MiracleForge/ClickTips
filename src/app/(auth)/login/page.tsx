@@ -5,7 +5,7 @@ export const metadata: Metadata = {
 }
 const Login: React.FC = () => {
   return (
-    <main className="w-full h-auto  my-10 mx-auto">
+    <main className="w-full h-full my-0 md:my-10 mx-auto">
         <FormLogin/>
     </main>
   );

@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { Button } from '../buttons/Button';
 import Link from 'next/link';
+import Image from 'next/image';
+import Logo from '@/app/favicon.ico';
 
 import { IoEye } from "react-icons/io5";
 import { IoEyeOff } from "react-icons/io5";
@@ -34,16 +36,16 @@ const FormLogin = () => {
     };
 
     return (
-        <section className='flex flex-row w-auto h-auto justify-center m-28 rounded-3xl' aria-labelledby='Formulário de Login'>
-            <div className='w-1/2 h-auto flex flex-col text-center space-y-2 items-center rounded-l-3xl py-24 text-rickblack shadow-md shadow-Cerulean/20 border-t-2'>
-                <h1 className='text-3xl line-clamp-3 text-PrussianBlue '>Faça Login para Anunciar</h1>
+        <section className='flex flex-col md:flex-row w-auto h-auto justify-center m-0 md:m-20 lg:m-28 lg:mt-10 ' aria-labelledby='Formulário de Login'>
+            <div className='w-full lg:w-1/2 order-2 md:order-1 h-auto flex flex-col text-center space-y-2 items-center  md:rounded-3xl lg:rounded-none md:rounded-l-3xl lg:rounded-l-3xl pt-0 md:pt-16 lg:pt-24 text-rickblack shadow-md shadow-Cerulean/20 border-t-2'>
+                <h1 className='text-3xl line-clamp-3 text-PrussianBlue pt-6 md:pt-0 '>Faça Login para Anunciar</h1>
                 <p className='whitespace-nowrap leading-9 text-xs items-center'>
                     Faça Login na sua Conta Click Tips <span className='text-xl'>😉</span>
                 </p>
 
                 <div className='py-6 w-full  space-y-6  drop-shadow-md '>
 
-                    <a href="#" className="flex items-center bg-white mx-auto w-1/2  transition-colors duration-300 transform border rounded-xl hover:bg-PictonBlue"> 
+                    <a href="#" className="flex items-center bg-white mx-10 md:mx-28 lg:mx-auto lg:w-1/2 transition-colors duration-300 transform border rounded-xl hover:bg-PictonBlue"> 
                         <div className="px-4 py-2 ">
                             <svg className="w-6 h-6" viewBox="0 0 40 40">
                                 <path d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.045 27.2142 24.3525 30 20 30C14.4775 30 10 25.5225 10 20C10 14.4775 14.4775 9.99999 20 9.99999C22.5492 9.99999 24.8683 10.9617 26.6342 12.5325L31.3483 7.81833C28.3717 5.04416 24.39 3.33333 20 3.33333C10.7958 3.33333 3.33335 10.7958 3.33335 20C3.33335 29.2042 10.7958 36.6667 20 36.6667C29.2042 36.6667 36.6667 29.2042 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z" fill="#FFC107" />
@@ -57,16 +59,16 @@ const FormLogin = () => {
                     </a>
 
                     <div className="flex items-center justify-between mt-4">
-                        <span className="w-1/2 border-b  lg:w-28 ml-auto"></span>
+                        <span className="border-b w-16 md:w-28 ml-auto"></span>
 
                         <small className="text-xs text-center text-gray-500 uppercase mx-5 px-4">or login
                             with email</small>
 
-                        <span className="w-1/2 border-b  lg:w-28 mr-auto"></span>
+                        <span className=" border-b w-16 md:w-28 mr-auto"></span>
                     </div>
 
 
-                    <form action='' className='flex items-center border-2 rounded-xl bg-white mx-auto w-1/2 h-12 p-2 relative'>
+                    <form action='' className='flex items-center border-2 rounded-xl bg-white mx-10 md:mx-28 lg:mx-auto  lg:w-1/2 h-12 p-2 relative'>
                         <label htmlFor='email-input'>
                             <small
                                 className={`absolute font-semibold text-md  duration-700 transition-all ${
@@ -85,7 +87,7 @@ const FormLogin = () => {
                         />
                     </form>
 
-                    <form action='' className='flex items-center border-2 rounded-xl bg-white mx-auto w-1/2 h-12 p-2 relative'>
+                    <form action='' className='flex items-center border-2 rounded-xl bg-white mx-10 md:mx-28 lg:mx-auto lg:w-1/2 h-12 p-2 relative'>
                         <label htmlFor='password-input'>
                             <small
                                 className={`absolute font-semibold   duration-700 transition-all ${
@@ -107,7 +109,7 @@ const FormLogin = () => {
                         </button>
                     </form>
 
-                    <div className='flex flex-row justify-between  items-center whitespace-nowrap  text-sm w-1/2 mx-auto '>
+                    <div className='flex flex-row  justify-center space-x-10  md:space-x-24 lg:space-x-0 lg:justify-between items-center whitespace-nowrap text-xs md:text-sm w-1/2 mx-auto md:mx-40 lg:mx-auto'>
                         <button className='space-x-2'>
                             <input type='checkbox' id='checkmarkCheckbox'></input>
                             <label htmlFor='checkmarkCheckbox'>Lembrar Minha Senha</label>
@@ -130,10 +132,20 @@ const FormLogin = () => {
                         Criar Conta
                     </Link>
                 </span>
+
+                <p className='pt-6 pb-4 px-3 md:px-0 text-xs md:text-sm lg:text-md'>Ao continuar você concorda com nossos <Link href={'#'} className='text-PrussianBlue hover:text-Cerulean'>Termos de Uso</Link> <br /> e  <Link href={'#'} className='text-PrussianBlue hover:text-Cerulean'>Politicas de Privacidade</Link></p>
+
             </div>
-            <aside className='flex flex-col w-1/3 h-auto text-center py-28  space-y-10 items-center px-10 rounded-r-3xl border-l-[1px] border-Cerulean bg-gradient-to-r from-PrussianBlue to-Cerulean drop-shadow-2xl '>
-                <h2 className='text-3xl line-clamp-3'>Bem Vindo de Volta !</h2>
-                <p>
+            <aside className='flex flex-col order-1 md:order-2 w-full md:w-1/3 h-auto text-center  py-6 md:pt-16 lg:pt-24 md:hidden lg:block space-y-4 md:space-y-8 items-center justify-center px-10  rounded-r-none md:rounded-r-3xl border-l-[1px] border-Cerulean bg-gradient-to-r from-PrussianBlue to-Cerulean  '>
+                <Image
+                    src={Logo}
+                    alt='ClickTips Logo'
+                    height={80}
+                    width={80}
+                    className="mx-auto"
+                />
+                <h2 className='text-3xl '>Bem Vindo de Volta !</h2>
+                <p className='text-sm leading-5 md:text-lg'>
                     Lorem incididunt sint veniam mollit voluptate. Sunt sint tempor ad magna non do culpa ex laboris Lorem
                     occaecat esse. Esse irure id non elit pariatur ad quis et duis anim ipsum aliqua ea.
                 </p>
