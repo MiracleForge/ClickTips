@@ -115,7 +115,7 @@ const navbar = () => {
 </header>
 
 
-<header className=" md:hidden fixed w-full h-auto" id="mobile-header" aria-labelledby="mobile-header-label">
+<header className=" md:hidden fixed w-full h-auto z-20" id="mobile-header" aria-labelledby="mobile-header-label">
     <nav  aria-label="Navigação Secundária" className={`${isLoginPage ? 'hidden' : 'bg-gradient-to-br from-Cerulean to-rickblack'}`}>
 
       <div className='w-full h-auto flex flex-row pt-6 px-8 items-center'>

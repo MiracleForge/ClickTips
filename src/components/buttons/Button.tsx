@@ -5,7 +5,7 @@ import { cn } from '@/app/hook/utils';
 
 // Define buttonVariants using cva
 const buttonVariants = cva(
-  'focus:ring focus:border-b-gray-900 font-bold rounded-lg text-sm text-center backdrop-blur-2xl',
+  'focus:ring focus:border-b-gray-900 font-bold rounded-lg text-sm text-center ',
   {
     variants: {
       variant: {

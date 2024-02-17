@@ -69,48 +69,52 @@ const FormLogin = () => {
                 </div>
 
 
-                <form action='' className='forms'>
-                    <label htmlFor='email-input'>
-                        <small
-                            className={`absolute font-semibold text-md  duration-700 transition-all ${
-                                inputFocusState.email ? '-translate-y-12 text-lg text-PrussianBlue' : 'translate-y-0 text-gray-400 text-md'
-                            }`}
-                        >
-                            Email:
-                        </small>
-                    </label>
-                    <input
-                        type='text'
-                        id='email-input'
-                        required
-                        className='text-sm focus:outline-none w-full'
-                        onFocus={() => handleInputFocus('email')}
-                        onBlur={(e) => handleInputBlur('email', e)}
-                    />
-                </form>
+                <form action='' className='py-6 w-full drop-shadow-md space-y-7'>
+                    <div className='forms'>
+                        <label htmlFor='email-input'>
+                            <small
+                                className={`absolute font-semibold text-md  duration-700 transition-all ${
+                                    inputFocusState.email ? '-translate-y-12 text-lg text-PrussianBlue' : 'translate-y-0 text-gray-400 text-md'
+                                }`}
+                            >
+                                Email:
+                            </small>
+                        </label>
+                        <input
+                            type='text'
+                            id='email-input'
+                            required
+                            className='text-sm focus:outline-none w-full'
+                            onFocus={() => handleInputFocus('email')}
+                            onBlur={(e) => handleInputBlur('email', e)}
+                        />
+                    </div>
+       
 
-                <form action='' className='forms'>
-                    <label htmlFor='password-input'>
-                        <small
-                            className={`absolute font-semibold   duration-700 transition-all ${
-                                inputFocusState.password ? '-translate-y-12 text-lg text-PrussianBlue' : 'translate-y-0 text-gray-400 text-md'
-                            }`}
-                        >
-                            Senha:
-                        </small>
-                    </label>
-                    <input
-                        type={`${statusEye ? 'text' : 'password'}`}
-                        id='password-input'
-                        required
-                        className='text-sm focus:outline-none w-full'
-                        onFocus={() => handleInputFocus('password')}
-                        onBlur={(e) => handleInputBlur('password', e)}
-                    />
-
+               
+                    <div className='forms'>
+                        <label htmlFor='password-input'>
+                            <small
+                                className={`absolute font-semibold   duration-700 transition-all ${
+                                    inputFocusState.password ? '-translate-y-12 text-lg text-PrussianBlue' : 'translate-y-0 text-gray-400 text-md'
+                                }`}
+                            >
+                                Senha:
+                            </small>
+                        </label>
+                        <input
+                            type={`${statusEye ? 'text' : 'password'}`}
+                            id='password-input'
+                            required
+                            className='text-sm focus:outline-none w-full'
+                            onFocus={() => handleInputFocus('password')}
+                            onBlur={(e) => handleInputBlur('password', e)}
+                        />
                     <button type="button" onClick={handleEyeStatus}>
                         {statusEye ? <IoEyeOff /> : <IoEye />}
                     </button>
+                    </div>
+
                 </form>
 
                 <div className='flex flex-row  justify-center space-x-10  md:space-x-24 lg:space-x-0 lg:justify-between items-center whitespace-nowrap text-xs md:text-sm w-1/2 mx-auto md:mx-40 lg:mx-auto'>

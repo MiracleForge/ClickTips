@@ -1,5 +1,6 @@
 "use client"
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FormEvent } from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
 import { Button } from '../buttons/Button';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -25,6 +26,9 @@ const RegisterForm = () => {
       confirmValue: '',
       arePasswordsEqual: false,
     });
+
+    {/* Captcha event*/ }
+    const [captcha, setCaptcha] = useState <string | null>();
   
     useEffect(() => {
       if (passwordStatus.passwordValue === passwordStatus.confirmValue) {
@@ -64,6 +68,14 @@ const RegisterForm = () => {
         }
     };
 
+    const onSubmit = (event: FormEvent) => {
+      event.preventDefault();
+      console.log(captcha)
+      if (captcha) {
+        console.log('client sive verified')
+      }
+    }
+
 
     return (
     <section className='conteinerSection' aria-labelledby='Formulário de Login'>
@@ -91,14 +103,14 @@ const RegisterForm = () => {
                 <div className="flex items-center justify-between mt-4">
                     <span className="border-b w-16 md:w-28 ml-auto"></span>
 
-                    <small className="text-xs text-center text-gray-500 uppercase mx-5 px-4">ou Registre
+                    <small className="text-xs text-center text-gray-500 uppercase mx-0 px-4">ou Registre
                         com seu email</small>
 
-                    <span className=" border-b w-16 md:w-28 mr-auto"></span>
+                    <span className="border-b w-16 md:w-28 mr-auto"></span>
                 </div>
 
 
-                <form action='' className='py-6 w-full drop-shadow-md space-y-7'>
+                <form action='' className='py-6 w-full  space-y-7' role='form' onSubmit={onSubmit}>
                     <div className='forms'>
                       <label htmlFor='email-input'>
                           <small
@@ -112,7 +124,8 @@ const RegisterForm = () => {
                       <input
                           type='email'
                           id='email-input'
-                          required
+                          name='email-input'
+                         
                           className='text-sm focus:outline-none w-full'
                           onFocus={() => handleInputFocus('email')}
                           onBlur={(e) => handleInputBlur('email', e)}
@@ -132,7 +145,8 @@ const RegisterForm = () => {
                     <input
                         type='text'
                         id='apelido-input'
-                        required
+                        name='apelido-input'
+                       
                         className='text-sm focus:outline-none w-full'
                         onFocus={() => handleInputFocus('apelido')}
                         onBlur={(e) => handleInputBlur('apelido', e)}
@@ -143,7 +157,7 @@ const RegisterForm = () => {
                     - Se pelo menos um dos campos (password ou confirm) possui um valor (true) e as senhas são iguais ou ambos os campos estão vazios, a borda é definida como 'border-green-600'.
                     - Se ambos os campos estão vazios, nenhuma classe de borda é aplicada, garantindo que nenhuma borda seja exibida.
                 */}
-                <div className={`forms ${(passwordStatus.passwordValue || passwordStatus.confirmValue) && !passwordStatus.arePasswordsEqual ? 'border-red-600' : (passwordStatus.passwordValue || passwordStatus.confirmValue) ? 'border-green-600' : ''}`}>
+                <div className={`forms transition-colors ${(passwordStatus.passwordValue || passwordStatus.confirmValue) && !passwordStatus.arePasswordsEqual ? 'border-red-600' : (passwordStatus.passwordValue || passwordStatus.confirmValue) ? 'border-green-600' : ''}`}>
                     <label htmlFor='password-input'>
                         <small
                             className={`absolute font-semibold   duration-700 transition-all ${
@@ -158,8 +172,8 @@ const RegisterForm = () => {
                         id='password-input'
                         value={passwordStatus.passwordValue}
                         onChange={(e) => setPasswordStatus((prevStatus) => ({ ...prevStatus, passwordValue: e.target.value }))}
-                        
-                        required
+                        name='password-input'
+                       
                         className='text-sm focus:outline-none w-full'
                         onFocus={() => handleInputFocus('password')}
                         onBlur={(e) => handleInputBlur('password', e)}
@@ -184,9 +198,10 @@ const RegisterForm = () => {
                     <input
                         type={`${statusEye.confirmEye ? 'text' : 'password'}`}
                         id='confirm-input'
+                        name='confirm-input'
                         value={passwordStatus.confirmValue}
                         onChange={(e) => setPasswordStatus((prevStatus) => ({ ...prevStatus, confirmValue: e.target.value }))}
-                        required
+                       
                         className='text-sm focus:outline-none w-full'
                         onFocus={() => handleInputFocus('confirm')}
                         onBlur={(e) => handleInputBlur('confirm', e)}
@@ -196,22 +211,20 @@ const RegisterForm = () => {
                         {statusEye.confirmEye ? <IoEyeOff /> : <IoEye />}
                     </button>
                   </div>
+
+                  <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!} className='pb-6  mx-14 md:mx-28 lg:mx-64' onChange={setCaptcha}/>
+
+                  <Button type='submit'>
+                        Crie sua Conta
+                  </Button>
                 </form>
              </div>
-
-            <Button size='md' aria-label='Search' type='submit'>
-                Criar conta
-            </Button>
-
-
-            <span className='flex flex-row space-x-2 py-6 leading-10 '>
-                <p className='text-sm'>Já possue uma conta? </p>
-
-                <Link href={'#'} className='text-sm hover:text-Cerulean '>
-                    Faça Login
+        
+            <span className='flex flex-row space-x-2 py-6 leading-10 text-sm'>
+                <p >Já possue uma conta? </p>
+                <Link href={'/login'} className='hover:text-Cerulean text-PrussianBlue'> Faça Login
                 </Link>
             </span>
-
             <p className='pt-6 pb-4 px-3 md:px-0 text-xs md:text-sm lg:text-md'>Ao continuar você concorda com nossos <Link href={'#'} className='text-PrussianBlue hover:text-Cerulean'>Termos de Uso</Link> <br /> e  <Link href={'https://sonnensoftware.com/politicas/privacidade'} className='text-PrussianBlue hover:text-Cerulean'>Politicas de Privacidade</Link></p>
 
         </div>
