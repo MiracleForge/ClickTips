@@ -30,8 +30,17 @@ const RegisterForm = () => {
     {/* Captcha event*/ }
     const [captcha, setCaptcha] = useState <string | null>();
   
+    const isPasswordValid =
+    passwordStatus.passwordValue === passwordStatus.confirmValue &&
+    passwordStatus.passwordValue &&
+    passwordStatus.passwordValue.length >= 8 && // Mínimo de 8 caracteres
+    /[A-Z]/.test(passwordStatus.passwordValue) && // Pelo menos uma maiúscula
+    /[a-z]/.test(passwordStatus.passwordValue) && // Pelo menos uma minúscula
+    /\d/.test(passwordStatus.passwordValue) && // Pelo menos um número
+    /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(passwordStatus.passwordValue);
+
     useEffect(() => {
-      if (passwordStatus.passwordValue === passwordStatus.confirmValue) {
+      if (isPasswordValid ) {
         setPasswordStatus((prevStatus) => ({
           ...prevStatus,
           arePasswordsEqual: true,
@@ -212,7 +221,9 @@ const RegisterForm = () => {
                     </button>
                   </div>
 
-                  <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!} className='pb-6  mx-14 md:mx-28 lg:mx-64' onChange={setCaptcha}/>
+                  <div className="flex justify-center">
+                      <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!} onChange={setCaptcha}/>
+                  </div>
 
                   <Button type='submit'>
                         Crie sua Conta

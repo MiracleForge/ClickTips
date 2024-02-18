@@ -18,7 +18,7 @@ import { HiMapPin } from "react-icons/hi2";
 
 const navbar = () => {
     const pathname = usePathname();
-    const isLoginPage = pathname === '/login' || '/register';
+    const isFormPage = pathname === '/login' || pathname === '/register'; // always repeat the conditions when using ||
 
     const [isToggled, setIsToggled] = useState(false);
 
@@ -116,7 +116,7 @@ const navbar = () => {
 
 
 <header className=" md:hidden fixed w-full h-auto z-20" id="mobile-header" aria-labelledby="mobile-header-label">
-    <nav  aria-label="Navigação Secundária" className={`${isLoginPage ? 'hidden' : 'bg-gradient-to-br from-Cerulean to-rickblack'}`}>
+    <nav  aria-label="Navigação Secundária" className={`${isFormPage ? 'hidden' : 'bg-gradient-to-br from-Cerulean to-rickblack'}`}>
 
       <div className='w-full h-auto flex flex-row pt-6 px-8 items-center'>
         <figure className='rounded-full w-full h-auto'>
