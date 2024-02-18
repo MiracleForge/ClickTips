@@ -2,7 +2,7 @@
 import React from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
-import {  useState } from "react";
+import {  useState, useEffect } from "react";
 import { usePathname } from 'next/navigation';
 
 import Logo from '@/app/favicon.ico';
@@ -15,19 +15,60 @@ import { IoGrid,  IoChatbubblesSharp, IoCreate, IoSearch, IoClose  } from "react
 import { FaBell } from "react-icons/fa6";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { HiMapPin } from "react-icons/hi2";
+import { ImMenu3 } from "react-icons/im";
+import { ImMenu4 } from "react-icons/im";
+import { IoCarSport } from "react-icons/io5";
+import { IoHome } from "react-icons/io5";
+import { PiTelevisionSimpleFill } from "react-icons/pi";
 
 const navbar = () => {
     const pathname = usePathname();
     const isFormPage = pathname === '/login' || pathname === '/register'; // always repeat the conditions when using ||
 
-    const [isToggled, setIsToggled] = useState(false);
+    const [isToggled, setIsToggled] = useState<boolean>(false);
+
 
     const toggleButton = () => {
         setIsToggled(!isToggled);
+        console.log(isToggled);
     };
 
 
+    useEffect(() => {
+      const toggleHiddenClass = () => {
+        const elementsPrimary: NodeListOf<Element> = document.querySelectorAll('.hiddenNavPrimary');
+        const elementsSecondary: NodeListOf<Element> = document.querySelectorAll('.hiddenNavSecondary');
     
+        const applyHiddenClass = (elements: NodeListOf<Element>) => {
+          elements.forEach((element: Element) => {
+            element.classList.add('hidden');
+          });
+        };
+    
+        const removeHiddenClass = (elements: NodeListOf<Element>) => {
+          elements.forEach((element: Element) => {
+            element.classList.remove('hidden');
+          });
+        };
+    
+        if (isToggled) {
+          removeHiddenClass(elementsPrimary);
+          applyHiddenClass(elementsSecondary);
+        } else {
+          removeHiddenClass(elementsSecondary);
+          applyHiddenClass(elementsPrimary);
+        }
+      };
+    
+      // Adiciona um atraso de 1 segundo antes de aplicar as alterações de classe
+      const timeoutId = setTimeout(() => {
+        toggleHiddenClass();
+      }, 1000);
+    
+      // Limpa o timeout para evitar chamadas não desejadas
+      return () => clearTimeout(timeoutId);
+    }, [isToggled]);
+
   return (
   <>
     <header id="desktop-header" className="hidden md:block" aria-labelledby="desktop-header-label">
@@ -77,42 +118,60 @@ const navbar = () => {
         </div>
       </nav>
 
-    <nav aria-label="Navigação Primária" className="flex flex-row w-full h-auto justify-between text-center bg-Cerulean text-xl">
+      <nav aria-label="Navigação Primária" className="flex flex-row w-full h-auto justify-between text-center bg-Cerulean text-xl">
 
-      <ul className="flex list-none gap-10 lg:gap-16 px-8 lg:px-12 items-center lg:py-3 md:whitespace-nowrap">
+        <ul className="flex list-none gap-10 md:gap-6 lg:gap-16 px-8 lg:px-12 items-center lg:py-3 md:whitespace-nowrap">
 
-        <li className="p-2 hover:-translate-y-2 transition-all hover:text-PrussianBlue">
-          <Link href="/myannounces" className="flex items-center gap-4" aria-label="Ir para a Meus Anúncios">
-            <IoGrid className='text-2xl lg:text-4xl'/>
-            <h2>Meus Anúncios</h2>
-          </Link>
-        </li>
+          <li className="" onClick={toggleButton}>
+            {isToggled ? <ImMenu4 className='text-2xl lg:text-5xl' /> : <ImMenu3 className='text-2xl lg:text-5xl text-PrussianBlue'/>}
+          </li>
 
-        <li className="p-2 hover:-translate-y-2 transition-all hover:text-PrussianBlue ">
-          <Link href="#" className="flex items-center gap-4" aria-label="Ir para a página Chat">
-            <IoChatbubblesSharp className='text-2xl lg:text-4xl'/>
-            <h2>Chat</h2>
-          </Link>
-        </li>
+          <li className='p-2 hover:-translate-y-2 transition-all hover:text-PrussianBlue' >
+            <Link href="/myannounces" className={`flex items-center gap-4 md:gap-2 transition-all  ${isToggled ? 'translate-x-0 translate-y-0 opacity-100 scale-100' : 'absolute -translate-x-4 translate-y-8 scale-0 hiddenNavPrimary'}`} aria-label="Ir para a Meus Anúncios">
+              <IoGrid className='text-2xl md:text-lg lg:text-4xl'/>
+              <h2>Meus Anúncios</h2>
+            </Link>
 
-        <li className="p-2 hover:-translate-y-2 transition-all hover:text-PrussianBlue">
-          <Link href="#" className="flex items-center gap-4" aria-label="Ir para a página Notificação">
-            <FaBell className='text-2xl lg:text-4xl'/>
-            <h2>Notificação</h2>
-          </Link>
-        </li>
+            <Link href="/imoveis" className={`flex items-center gap-4 md:gap-2 transition-all ${isToggled ? 'absolute -translate-x-4 translate-y-8 scale-0 hiddenNavSecondary' : 'translate-x-0 translate-y-0 opacity-100 scale-100'}`} aria-label="Ir para a Imóveis">
+              <IoHome className='text-2xl md:text-lg lg:text-4xl'/>
+              <h2>Imóveis</h2>
+            </Link>
+          </li>
 
-        <li className="p-2 hover:-translate-y-2 transition-all hover:text-PrussianBlue ">
-          <Link href="#" className="flex items-center gap-4" aria-label="Criar um novo Anúncio">
-            <IoCreate className='text-2xl lg:text-4xl'/>
-            <h2>Anúnciar</h2>
-          </Link>
-        </li>
+          <li className='p-2 hover:-translate-y-2 transition-all hover:text-PrussianBlue' >
+            <Link href="/myannounces" className={`flex items-center gap-4 md:gap-2 transition-all  ${isToggled ? 'translate-x-0 translate-y-0 opacity-100 scale-100' : 'absolute -translate-x-4 translate-y-8 scale-0 hiddenNavPrimary'}`} aria-label="Ir para a Meus Anúncios">
+              <IoChatbubblesSharp className='text-2xl md:text-lg lg:text-4xl'/>
+              <h2>Chat</h2>
+            </Link>
 
-      </ul>
+            <Link href="/imoveis" className={`flex items-center gap-4 md:gap-2 md:gap-2transition-all ${isToggled ? 'absolute -translate-x-4 translate-y-8 scale-0 hiddenNavSecondary' : 'translate-x-0 translate-y-0 opacity-100 scale-100'}`} aria-label="Ir para a Imóveis">
+              <IoCarSport className='text-2xl md:text-lg lg:text-4xl'/>
+              <h2>Automóveis</h2>
+            </Link>
+          </li>
 
-    </nav>
-</header>
+          <li className='p-2 hover:-translate-y-2 transition-all hover:text-PrussianBlue' >
+            <Link href="/myannounces" className={`flex items-center gap-4 md:gap-2 transition-all  ${isToggled ? 'translate-x-0 translate-y-0 opacity-100 scale-100' : 'absolute -translate-x-4 translate-y-8 scale-0 hiddenNavPrimary'}`} aria-label="Ir para a Meus Anúncios">
+              < FaBell className='text-2xl md:text-lg lg:text-4xl'/>
+              <h2>Notificações</h2>
+            </Link>
+
+            <Link href="/imoveis" className={`flex items-center gap-4 md:gap-2 transition-all ${isToggled ? 'absolute -translate-x-4 translate-y-8 scale-0 hiddenNavSecondary' : 'translate-x-0 translate-y-0 opacity-100 scale-100'}`} aria-label="Ir para a Imóveis">
+              <PiTelevisionSimpleFill className='text-2xl md:text-lg lg:text-4xl'/>
+              <h2>Eletrodomésticos</h2>
+            </Link>
+          </li>
+
+          <li className="p-2 hover:-translate-y-2 transition-all hover:text-PrussianBlue ">
+            <Link href="#" className="flex items-center gap-4 md:gap-2" aria-label="Criar um novo Anúncio">
+              <IoCreate className='text-2xl md:text-lg lg:text-4xl'/>
+              <h2>Anúnciar</h2>
+            </Link>
+          </li>
+
+        </ul>
+      </nav>
+  </header>
 
 
 <header className=" md:hidden fixed w-full h-auto z-20" id="mobile-header" aria-labelledby="mobile-header-label">
