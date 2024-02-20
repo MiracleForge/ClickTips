@@ -1,9 +1,17 @@
 import Image from "next/image";
-
+import Banner from "../../public/assets/images/SonnenLogo.png";
+import Caroussel from "@/components/caroussel/Caroussel";
+import { slides } from '../../public/assets/data/caroussel.json';
 export default function Home() {
+
+
   return (
     <main className="w-full h-screen">
-        <h3 className="text-3xl text-red-600">oiiii</h3>
+        <section className="bg-red-600 mt-6">
+          <Caroussel/>          
+
+        </section>
+        
     </main>
   );
 }
